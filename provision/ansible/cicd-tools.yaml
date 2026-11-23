@@ -165,7 +165,7 @@
       docker_container:
         name: sonarqube
         state: started
-        image: "sonarqube:9.6.1-community"
+        image: "sonarqube:9.9.8-community"
         pull: true
         ports:
           - "9000:9000"
