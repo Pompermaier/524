@@ -28,14 +28,16 @@ Nesse laboratórios, que está centralizado no arquivo [Vagrantfile][8], serão 
 
 Nome       | vCPUs | Memoria RAM | IP            | S.O.¹           | Script de Provisionamento²
 ---------- |:-----:|:-----------:|:-------------:|:---------------:| -----------------------------
-cicd       | 1     | 1536MB      | 192.168.56.10 | ubuntu/focal64 |  provision/ansible/cicd.yaml |
-cicd-tools | 1     | 3072MB      | 192.168.56.20 | dubuntu/focal64 | provision/ansible/cicd-tools |
-k3s    | 1     | 2048MB       | 192.168.56.30 | ubuntu/focal64 | provision/ansible/k3s.yaml |
-gitlab-ci | 1 | 3072 | 192.168.56.40 | ubuntu/focal64 | provision/ansible/gitlab-ci.yaml |
+cicd       | 1     | 1536MB      | 192.168.88.10 | bento/ubuntu-22.04 | provision/ansible/cicd.yaml |
+cicd-tools | 1     | 3072MB      | 192.168.88.20 | bento/ubuntu-22.04 | provision/ansible/cicd-tools.yaml |
+k3s        | 2     | 2048MB      | 192.168.88.30 | bento/ubuntu-22.04 | provision/ansible/k3s.yaml |
+gitlab-ci  | 2     | 3072MB      | 192.168.88.40 | bento/ubuntu-22.04 | provision/ansible/gitlab-ci.yaml |
 
 > **¹**: Esses Sistemas operacionais estão sendo utilizado no formato de Boxes, é a forma como o vagrant chama as imagens do sistema operacional utilizado.
 
-> **²**: Para o Script de Provisionamento estamos utilizando Shell Script
+> **²**: Para o Script de Provisionamento estamos utilizando Ansible (`ansible_local`)
+
+> A box `bento/ubuntu-22.04` possui versões amd64 e arm64, então o laboratório funciona tanto em máquinas x86 quanto em Macs com Apple Silicon (M1/M2/M3...).
 
 Criação do Laboratório 
 ----------------------
@@ -43,7 +45,7 @@ Criação do Laboratório
 Para criar o laboratório é necessário fazer o `git clone` desse repositório e, dentro da pasta baixada realizar a execução do `vagrant up`, conforme abaixo:
 
 ```bash
-git clone https://github.com/4linux/524
+git clone https://github.com/Pompermaier/524
 cd 524/
 vagrant up
 ```
