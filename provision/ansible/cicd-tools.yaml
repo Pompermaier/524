@@ -161,6 +161,19 @@
         volumes:
         - /nexus:/nexus-data
 
+    - name: Cria diretorios do sonarqube (container roda como uid 1000)
+      ansible.builtin.file:
+        path: "/sonarqube/{{ item }}"
+        state: directory
+        owner: 1000
+        group: 1000
+        mode: '0755'
+      loop:
+        - sonarqube_conf
+        - sonarqube_extensions
+        - sonarqube_logs
+        - sonarqube_data
+
     - name: Criando conatainer do sonarqube
       docker_container:
         name: sonarqube
